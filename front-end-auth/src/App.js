@@ -7,18 +7,35 @@ import Users from './Components/Users'
 
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <Navbar />
-      <Switch>
-        <Route path='/login' component={AuthContainer} />
-        <Route path='/signup' component={AuthContainer} />
-        <Route path='/users' component={Users} />
-        <Route path='/' component={Home} />
-      </Switch>
-    </div>
-  );
+class App extends React.Component {
+
+  state = {
+    user: null,
+    isUserLoggedIn: false
+  }
+
+  setUser = (user) => {
+    this.setState({
+      user: user,
+      isUserLoggedIn: true
+    })
+  }
+
+  renderAuthContainer = () => <AuthContainer setUser={this.setUser} />
+
+  render() {
+    return (
+      <div className="App">
+        <Navbar />
+        <Switch>
+          <Route path='/login' render={this.renderAuthContainer} />
+          <Route path='/signup' render={this.renderAuthContainer} />
+          <Route path='/users' component={Users} />
+          <Route path='/' component={Home} />
+        </Switch>
+      </div>
+    );
+  }
 }
 
 export default App;

@@ -22,7 +22,7 @@ const SignupForm = ({ username, password, handleChange, signupUser }) => {
                     type="password"
                     name="password"
                     value={password}
-                    placeholder="***"
+                    placeholder="******"
                     onChange={handleChange}
                 />
                 <input type="submit" value="Signup" />

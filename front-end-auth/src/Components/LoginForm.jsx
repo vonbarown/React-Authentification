@@ -22,7 +22,7 @@ const LoginForm = ({ username, password, handleChange, loginUser }) => {
                     type="password"
                     name="password"
                     value={password}
-                    placeholder="***"
+                    placeholder="*******"
                     onChange={handleChange}
                 />
                 <input type="submit" value="log-in" />
