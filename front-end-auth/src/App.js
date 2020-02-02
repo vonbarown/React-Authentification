@@ -44,7 +44,7 @@ class App extends React.Component {
     }
   }
 
-  renderAuthContainer = (routeProps) => <AuthContainer setUser={this.setUser}{...routeProps} />
+  renderAuthContainer = (routeProps) => <AuthContainer setUser={this.setUser}{...routeProps} isUserLoggedIn={this.state.isUserLoggedIn} />
 
   render() {
     return (
@@ -56,6 +56,8 @@ class App extends React.Component {
           <Route path='/login' render={this.renderAuthContainer} />
           <Route path='/signup' render={this.renderAuthContainer} />
           <PrivateRoute path='/users' component={Users} isUserLoggedIn={this.state.isUserLoggedIn} />
+          <PrivateRoute path='/profile' component={Users} isUserLoggedIn={this.state.isUserLoggedIn} />
+
           <Route path='/' component={Home} />
         </Switch>
       </div>
