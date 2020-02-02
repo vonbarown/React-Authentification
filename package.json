@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./server/bin/www",
-    "heroku-postbuild": "cd back-auth && npm install && cd ../front-end-auth && npm install --only=prod && npm run build"
+    "start": "node ./back-auth/bin/www",
+    "heroku-postbuild": "cd back-auth && npm install && cd ../front-end-auth && npm install && npm run build"
   }
 }
