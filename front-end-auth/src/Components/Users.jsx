@@ -25,12 +25,14 @@ class Users extends Component {
         return (
             <div>
                 <h2>Users</h2>
-                <ul>
+                <ul style={{
+                    listStyle: 'none'
+                }}>
                     {
                         this.state.users.map((user, i) => {
                             return (
                                 <li className="user-item" key={i}>
-                                    <p>id:{user.id} user:{user.username}</p>
+                                    <p> id: {user.id} user: {user.username}</p>
                                 </li>
                             )
                         })
