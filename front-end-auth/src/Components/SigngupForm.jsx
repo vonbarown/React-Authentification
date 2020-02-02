@@ -1,11 +1,6 @@
 import React from 'react';
 
-const SignupForm = ({
-    username,
-    password,
-    handleChange,
-    signupUser
-}) => {
+const SignupForm = ({ username, password, handleChange, signupUser }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
