@@ -3,7 +3,7 @@ import { Navbar } from './Components/Navbar'
 import { Switch, Route } from 'react-router-dom'
 import AuthContainer from './Containers/AuthContainer'
 import { Home } from './Components/Home'
-import { Users } from './Components/Users'
+import Users from './Components/Users'
 
 import './App.css';
 

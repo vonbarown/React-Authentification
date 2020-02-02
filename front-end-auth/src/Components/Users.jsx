@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 
-export default class Users extends Component {
+class Users extends Component {
     constructor() {
         super()
 
@@ -12,8 +12,10 @@ export default class Users extends Component {
 
     async componentDidMount() {
         try {
-            let { data } = await axios.get('/users')
-            this.setState({ users: data.payload })
+            let { data } = await axios.get('http://localhost:8081/users')
+            this.setState({
+                users: data.payload
+            })
         } catch (err) {
             console.log('ERROR', err)
         }
@@ -21,18 +23,22 @@ export default class Users extends Component {
 
     render() {
         return (
-            <ul>
-                {
-                    this.state.users.map((user, i) => {
-                        return (
-                            <li className="user-item" key={i}>
-                                <p>id:{user.id} user:{user.username}</p>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
+            <div>
+                <h2>Users</h2>
+                <ul>
+                    {
+                        this.state.users.map((user, i) => {
+                            return (
+                                <li className="user-item" key={i}>
+                                    <p>id:{user.id} user:{user.username}</p>
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+            </div>
         )
     }
 }
 
+export default Users
