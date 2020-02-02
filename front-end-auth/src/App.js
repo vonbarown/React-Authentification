@@ -24,6 +24,10 @@ class App extends React.Component {
   logoutUser = async () => {
     try {
       await axios.get('/auth/logout')
+      this.setState({
+        user: null,
+        isUserLoggedIn: false
+      })
     } catch (error) {
       console.log('error', error);
     }
@@ -34,7 +38,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Navbar logoutUser={this.logoutUser} />
+        <Navbar logoutUser={this.logoutUser}
+          isUserLoggedIn={this.state.isUserLoggedIn}
+        />
         <Switch>
           <Route path='/login' render={this.renderAuthContainer} />
           <Route path='/signup' render={this.renderAuthContainer} />
