@@ -39,7 +39,12 @@ router.post('/login', passport.authenticate('local'), async (req, res, next) => 
 })
 
 router.get('/logout', async (req, res, next) => {
-
+    req.logOut()
+    res.json({
+        payload: null,
+        msg: 'user successfully logged out',
+        err: false
+    })
 })
 
 module.exports = router;

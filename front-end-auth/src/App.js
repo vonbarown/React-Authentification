@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom'
 import AuthContainer from './Containers/AuthContainer'
 import { Home } from './Components/Home'
 import Users from './Components/Users'
+import axios from 'axios'
 
 import './App.css';
 
@@ -20,13 +21,20 @@ class App extends React.Component {
       isUserLoggedIn: true
     })
   }
+  logoutUser = async () => {
+    try {
+      await axios.get('/auth/logout')
+    } catch (error) {
+      console.log('error', error);
+    }
+  }
 
   renderAuthContainer = () => <AuthContainer setUser={this.setUser} />
 
   render() {
     return (
       <div className="App">
-        <Navbar />
+        <Navbar logoutUser={this.logoutUser} />
         <Switch>
           <Route path='/login' render={this.renderAuthContainer} />
           <Route path='/signup' render={this.renderAuthContainer} />

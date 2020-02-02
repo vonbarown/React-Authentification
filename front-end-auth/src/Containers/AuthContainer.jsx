@@ -12,8 +12,17 @@ class AuthContainer extends Component {
 
     handleChange = e => this.setState({ [e.target.name]: e.target.value })
 
-    signupUser = (user) => {
-        console.log('signing up user');
+    signupUser = async (user) => {
+        try {
+            const { data } = await axios.post('/auth/signup', this.state)
+
+            console.log(data);
+            this.props.setUser(data.payload)
+
+        } catch (error) {
+            console.log(error);
+
+        }
 
     }
 
