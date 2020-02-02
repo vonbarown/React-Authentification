@@ -16,7 +16,6 @@ class AuthContainer extends Component {
         try {
             const { data } = await axios.post('/auth/signup', this.state)
 
-            console.log(data);
             this.props.setUser(data.payload)
 
         } catch (error) {
@@ -30,9 +29,8 @@ class AuthContainer extends Component {
         try {
             const { data } = await axios.post('/auth/login', this.state)
 
-            console.log(data);
             this.props.setUser(data.payload)
-
+            this.props.history.push('/users')
         } catch (error) {
             console.log(error);
 
@@ -65,8 +63,6 @@ class AuthContainer extends Component {
 
 
     render() {
-        console.log(this.state);
-
         return (
             <div>
                 <Switch>

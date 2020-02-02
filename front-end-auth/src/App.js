@@ -1,8 +1,9 @@
 import React from 'react';
+import { Switch, Route, withRouter } from 'react-router-dom'
+import { PrivateRoute } from './Components/PrivateRoute';
 import { Navbar } from './Components/Navbar'
-import { Switch, Route } from 'react-router-dom'
-import AuthContainer from './Containers/AuthContainer'
 import { Home } from './Components/Home'
+import AuthContainer from './Containers/AuthContainer'
 import Users from './Components/Users'
 import axios from 'axios'
 
@@ -28,12 +29,22 @@ class App extends React.Component {
         user: null,
         isUserLoggedIn: false
       })
+      this.props.history.push('/')
     } catch (error) {
       console.log('error', error);
     }
   }
 
-  renderAuthContainer = () => <AuthContainer setUser={this.setUser} />
+  checkUserIsLoggedIn = async () => {
+    try {
+      const { data } = await axios.get('/auth/isUserLoggedIn')
+      this.setUser(data.payload)
+    } catch (error) {
+
+    }
+  }
+
+  renderAuthContainer = (routeProps) => <AuthContainer setUser={this.setUser}{...routeProps} />
 
   render() {
     return (
@@ -44,7 +55,7 @@ class App extends React.Component {
         <Switch>
           <Route path='/login' render={this.renderAuthContainer} />
           <Route path='/signup' render={this.renderAuthContainer} />
-          <Route path='/users' component={Users} />
+          <PrivateRoute path='/users' component={Users} isUserLoggedIn={this.state.isUserLoggedIn} />
           <Route path='/' component={Home} />
         </Switch>
       </div>
@@ -52,4 +63,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withRouter(App);

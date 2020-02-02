@@ -38,7 +38,14 @@ router.post('/login', passport.authenticate('local'), async (req, res, next) => 
     })
 })
 
-router.get('/logout', async (req, res, next) => {
+router.get('/isUserLoggedIn', authHelpers.loginRequired, (req, res) => {
+    res.json({
+        payload: req.user,
+        msg: 'User is logged in'
+    })
+})
+
+router.get('/logout', authHelpers.loginRequired, (req, res, next) => {
     req.logOut()
     res.json({
         payload: null,
@@ -46,5 +53,7 @@ router.get('/logout', async (req, res, next) => {
         err: false
     })
 })
+
+
 
 module.exports = router;
