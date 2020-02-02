@@ -21,14 +21,17 @@ export default class Users extends Component {
 
     render() {
         return (
-            this.state.users.map((user, i) => {
-                return (
-                    <div className="user-item" key={i}>
-                        <p><span>id: </span>{user.id}</p>
-                        <p><span>user: </span>{user.username}</p>
-                    </div>
-                )
-            })
+            <ul>
+                {
+                    this.state.users.map((user, i) => {
+                        return (
+                            <li className="user-item" key={i}>
+                                <p>id:{user.id} user:{user.username}</p>
+                            </li>
+                        )
+                    })
+                }
+            </ul>
         )
     }
 }
